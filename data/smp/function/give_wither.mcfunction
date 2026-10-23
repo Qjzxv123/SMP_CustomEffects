@@ -1,0 +1,1 @@
+give @s potion[potion_contents={custom_color:7561558,custom_effects:[{duration:9600,show_icon:0b,id:"minecraft:wither",show_particles:0b}]},custom_name={text:"Potion of Wither",italic:0b},custom_data={smp_effect:"wither"},lore=[{color:"yellow",text:"Sneak To Shoot Wither Skull(10 Second Cooldown)",italic:0b}],!minecraft:consumable]

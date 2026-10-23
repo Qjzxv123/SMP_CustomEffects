@@ -1,0 +1,1 @@
+give @s potion[potion_contents={potion:"minecraft:long_water_breathing"},custom_data={smp_effect:"water_breathing"},lore=[{color:"yellow",text:"Permanent Water Breathing",italic:0b},{color:"yellow",text:"When In Water Gain Regeneration and Dolphins Grace",italic:0b}],!minecraft:consumable]

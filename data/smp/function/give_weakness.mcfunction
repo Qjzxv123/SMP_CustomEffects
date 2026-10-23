@@ -1,0 +1,1 @@
+give @s potion[potion_contents={potion:"minecraft:long_weakness"},custom_data={smp_effect:"weakness"},lore=[{color:"yellow",text:"Weakness, Speed, and Resistance II",italic:0b}],!minecraft:consumable]

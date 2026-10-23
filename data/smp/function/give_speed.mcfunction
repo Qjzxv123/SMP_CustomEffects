@@ -1,0 +1,1 @@
+give @s potion[potion_contents={potion:"minecraft:long_swiftness"},custom_data={smp_effect:"speed"},lore=[{color:"yellow",text:"Permanent Speed II and Hunger III",italic:0b},{color:"yellow",text:"Blink(Sneak to Teleport Forward 20 Blocks(10 Second Cooldown)",italic:0b}],!minecraft:consumable]

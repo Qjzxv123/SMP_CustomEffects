@@ -1,0 +1,1 @@
+give @s potion[potion_contents={custom_color:14270531,custom_effects:[{duration:9600,show_icon:0b,id:"minecraft:haste",show_particles:0b}]},custom_name={text:"Potion of Haste",italic:0b},custom_data={smp_effect:"haste"},lore=[{color:"yellow",text:"Permanent Haste II",italic:0b},{color:"yellow",text:"Chunk Miner: Mines Chunk(5 Minute Cooldown)",italic:0b}],!minecraft:consumable]

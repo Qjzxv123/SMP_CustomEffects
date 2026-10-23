@@ -1,0 +1,1 @@
+give @s potion[potion_contents={potion:"minecraft:long_slowness"},custom_data={smp_effect:"slowness"},lore=[{color:"yellow",text:"Permanent Slowness II, Strength II, and Mining Fatigue I",italic:0b}],!minecraft:consumable]

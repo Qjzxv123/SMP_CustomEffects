@@ -1,0 +1,1 @@
+give @s potion[potion_contents={potion:"minecraft:long_leaping"},custom_data={smp_effect:"leaping"},lore=[{color:"yellow",text:"Permanent Jump Boost",italic:0b},{color:"yellow",text:"Ground Pound: Sneak to Jump into the Air and Deal 3 Hearts to Nearby Entities on Landing(10 Second Cooldown)",italic:0b}],!minecraft:consumable]

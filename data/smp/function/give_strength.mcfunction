@@ -1,0 +1,1 @@
+give @s potion[potion_contents={potion:"minecraft:long_strength"},custom_data={smp_effect:"strength"},lore=[{color:"yellow",text:"Strength III When Below Half Health",italic:0b}],!minecraft:consumable]

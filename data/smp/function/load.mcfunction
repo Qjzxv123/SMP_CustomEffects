@@ -1,0 +1,19 @@
+scoreboard objectives add smp_health health
+scoreboard objectives add smp_timer dummy
+scoreboard objectives add smp_hit_timer dummy
+scoreboard objectives add smp_took_damage custom:damage_taken
+scoreboard objectives add smp_sneak custom:sneak_time
+scoreboard objectives add smp_leap_cd dummy
+scoreboard objectives add smp_health_cd dummy
+scoreboard objectives add smp_poison_cd dummy
+scoreboard objectives add smp_bad_omen_cd dummy
+scoreboard objectives add smp_backstab_cd dummy
+scoreboard objectives add smp_fireball_cd dummy
+scoreboard objectives add smp_speed_cd dummy
+scoreboard objectives add smp_haste_cd dummy
+scoreboard objectives add smp_luck_cd dummy
+scoreboard objectives add smp_luck_roll dummy
+scoreboard objectives add smp_wither_cd dummy
+scoreboard objectives add smp_sonic_age dummy
+scoreboard objectives add smp_darkness_cd dummy
+tellraw @a {"text":"SMP Custom Effects Loaded!","color":"green"}

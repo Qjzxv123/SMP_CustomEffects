@@ -1,0 +1,1 @@
+give @s potion[potion_contents={potion:"minecraft:long_night_vision"},custom_data={smp_effect:"night_vision"},lore=[{color:"yellow",text:"Permanent Night Vision",italic:0b},{color:"yellow",text:"Gain Strength At Night and Weakness During the Day",italic:0b},{color:"yellow",text:"Effect Players Within 15 Blocks With Glowing",italic:0b}],!minecraft:consumable]
