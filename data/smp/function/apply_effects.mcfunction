@@ -156,18 +156,18 @@ execute if entity @s[tag=luck_roll_active] run execute store result score @s smp
 execute if entity @s[tag=luck_active,scores={smp_sneak=1..}] if score @s smp_luck_cd matches 0 run scoreboard players set @s smp_luck_cd 600
 execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=1}] run title @s actionbar [{"text":"Roll 1: Unlucky!","color":"dark_red"}]
 execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=1}] run damage @s 6 minecraft:magic
-execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=1}] run effect give @s minecraft:weakness 10 0 true
+execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=1}] run effect give @s minecraft:weakness 30 0 true
 execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=2}] run title @s actionbar [{"text":"Roll 2: Inconvenient!","color":"red"}]
-execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=2}] run effect give @s minecraft:slowness 10 1 true
-execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=2}] run effect give @s minecraft:nausea 10 0 true
+execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=2}] run effect give @s minecraft:slowness 30 1 true
+execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=2}] run effect give @s minecraft:nausea 30 0 true
 execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=3..4}] run title @s actionbar [{"text":"Roll 3-4: Nothing happens","color":"gray"}]
 execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=5}] run title @s actionbar [{"text":"Roll 5: Convenient!","color":"green"}]
-execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=5}] run effect give @s minecraft:speed 10 1 true
-execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=5}] run effect give @s minecraft:regeneration 10 0 true
+execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=5}] run effect give @s minecraft:speed 30 1 true
+execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=5}] run effect give @s minecraft:regeneration 30 0 true
 execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=6}] run title @s actionbar [{"text":"Roll 6: JACKPOT!","color":"gold"}]
-execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=6}] run effect give @s minecraft:strength 15 1 true
-execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=6}] run effect give @s minecraft:regeneration 15 1 true
-execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=6}] run effect give @s minecraft:absorption 15 3 true
+execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=6}] run effect give @s minecraft:strength 30 2 true
+execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=6}] run effect give @s minecraft:regeneration 30 1 true
+execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=6}] run effect give @s minecraft:absorption 30 3 true
 tag @a remove luck_roll_active
 
 # --- Darkness ---
