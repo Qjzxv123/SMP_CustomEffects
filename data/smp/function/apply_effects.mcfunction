@@ -117,7 +117,7 @@ execute if entity @s[tag=weakness_active] run effect give @s minecraft:resistanc
 execute if entity @s[tag=weakness_active] run effect give @s minecraft:speed 1 0 true 
 
 # --- Bad Omen ---
-execute if entity @s[tag=bad_omen_active] run attribute @s minecraft:max_health modifier add bad_omen -10 add_value
+execute if entity @s[tag=bad_omen_active] run attribute @s minecraft:max_health modifier add bad_omen -5 add_value
 execute if entity @s[tag=!bad_omen_active] run attribute @s minecraft:max_health modifier remove bad_omen
 execute if entity @s[tag=bad_omen_active] run effect give @s minecraft:bad_omen 1 0
 execute if entity @s[tag=bad_omen_active] unless score @s smp_bad_omen_cd = @s smp_bad_omen_cd run scoreboard players set @s smp_bad_omen_cd 0
