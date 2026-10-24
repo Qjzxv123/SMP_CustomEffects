@@ -171,7 +171,7 @@ execute if entity @s[tag=luck_roll_active,scores={smp_luck_roll=6}] run effect g
 tag @a remove luck_roll_active
 
 # --- Darkness ---
-execute if entity @s[tag=darkness_active] run effect give @s minecraft:darkness 1 0 
+execute if entity @s[tag=darkness_active] run effect give @s minecraft:darkness 11 0 
 execute if entity @s[tag=darkness_active] at @s run effect give @e[distance=..15,tag=!darkness_active] minecraft:glowing 2 0 true
 execute if entity @s[tag=darkness_active] unless score @s smp_darkness_cd = @s smp_darkness_cd run scoreboard players set @s smp_darkness_cd 0
 execute if entity @s[scores={smp_darkness_cd=1..}] run scoreboard players remove @s smp_darkness_cd 1
