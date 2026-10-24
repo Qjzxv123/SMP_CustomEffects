@@ -45,7 +45,8 @@ execute as @a[nbt={Inventory:[{components:{"minecraft:custom_data":{smp_effect:"
 # 3. Apply Effect Logic
 execute as @a run function smp:apply_effects
 tag @e[type=minecraft:wither_skull,tag=smp_wither_projectile] remove smp_wither_projectile
-execute as @e[type=minecraft:arrow,tag=smp_sonic_boom] at @s run particle minecraft:sonic_boom ~ ~ ~
-execute as @e[type=minecraft:arrow,tag=smp_sonic_boom] at @s as @e[distance=..1,tag=!smp_sonic_boom] run damage @s 10 minecraft:sonic_boom
-execute as @e[type=minecraft:arrow,tag=smp_sonic_boom] run scoreboard players add @s smp_sonic_age 1
-kill @e[type=minecraft:arrow,tag=smp_sonic_boom,scores={smp_sonic_age=20..}]
+execute as @e[type=minecraft:marker,tag=smp_sonic_boom] at @s run tp @s ^ ^ ^1
+execute as @e[type=minecraft:marker,tag=smp_sonic_boom] at @s run particle minecraft:sonic_boom ~ ~ ~
+execute as @e[type=minecraft:marker,tag=smp_sonic_boom] at @s as @e[distance=..1,tag=!smp_sonic_boom] run damage @s 10 minecraft:sonic_boom
+execute as @e[type=minecraft:marker,tag=smp_sonic_boom] run scoreboard players add @s smp_sonic_age 1
+kill @e[type=minecraft:marker,tag=smp_sonic_boom,scores={smp_sonic_age=20..}]

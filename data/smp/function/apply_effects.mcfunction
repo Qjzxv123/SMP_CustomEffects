@@ -175,8 +175,8 @@ execute if entity @s[tag=darkness_active] run effect give @s minecraft:darkness 
 execute if entity @s[tag=darkness_active] at @s run effect give @e[distance=..15,tag=!darkness_active] minecraft:glowing 2 0 true
 execute if entity @s[tag=darkness_active] unless score @s smp_darkness_cd = @s smp_darkness_cd run scoreboard players set @s smp_darkness_cd 0
 execute if entity @s[scores={smp_darkness_cd=1..}] run scoreboard players remove @s smp_darkness_cd 1
-execute if entity @s[tag=darkness_active,scores={smp_sneak=1..}] if score @s smp_darkness_cd matches 0 at @s anchored eyes run summon minecraft:arrow ^ ^ ^1 {NoGravity:1b,Pickup:0b,Tags:["smp_sonic_boom"],CustomName:["Sonic Boom"]}
-execute if entity @s[tag=darkness_active,scores={smp_sneak=1..}] if score @s smp_darkness_cd matches 0 at @s anchored eyes rotated as @s positioned 0.0 0.0 0.0 positioned ^ ^ ^10 summon minecraft:area_effect_cloud run data modify entity @e[type=minecraft:arrow,tag=smp_sonic_boom,sort=nearest,limit=1] Motion set from entity @s Pos
+execute if entity @s[tag=darkness_active,scores={smp_sneak=1..}] if score @s smp_darkness_cd matches 0 at @s anchored eyes run summon minecraft:marker ^ ^ ^1 {Tags:["smp_sonic_boom"]}
+execute if entity @s[tag=darkness_active,scores={smp_sneak=1..}] if score @s smp_darkness_cd matches 0 run data modify entity @e[type=minecraft:marker,tag=smp_sonic_boom,sort=nearest,limit=1] Rotation set from entity @s Rotation
 execute if entity @s[tag=darkness_active,scores={smp_sneak=1..}] if score @s smp_darkness_cd matches 0 run playsound minecraft:entity.warden.sonic_boom player @a ~ ~ ~ 1 1
 execute if entity @s[tag=darkness_active,scores={smp_sneak=1..}] if score @s smp_darkness_cd matches 0 run scoreboard players set @s smp_darkness_cd 600
 
