@@ -47,6 +47,7 @@ execute if entity @s[tag=!leap_slam] run attribute @s minecraft:gravity modifier
 execute if entity @s[tag=leap_active,scores={smp_sneak=1..}] if score @s smp_leap_cd matches 0 run scoreboard players set @s smp_leap_cd 200
 # 4. Decrement cooldown (60 ticks = 3 second cooldown)
 execute if entity @s[scores={smp_leap_cd=1..}] run scoreboard players remove @s smp_leap_cd 1
+execute if entity @s[tag=leap_active,scores={smp_leap_cd=0}] run title @s actionbar [{"text":"Ground Slam Ready","color":"green"}]
 execute if entity @s[tag=leap_slam,nbt={OnGround:1b},scores={smp_leap_cd=..180}] at @s as @e[distance=..5,tag=!leap_active] run damage @s 6 minecraft:player_attack
 execute if entity @s[tag=leap_slam,nbt={OnGround:1b},scores={smp_leap_cd=..180}] run tag @s remove leap_slam
 
@@ -56,6 +57,7 @@ execute if entity @s[tag=fire_active] at @s if block ~ ~ ~ minecraft:water run d
 execute if entity @s[tag=fire_active] at @s if dimension minecraft:the_nether run effect give @s minecraft:strength 1 0 true
 execute if entity @s[tag=fire_active] unless score @s smp_fireball_cd = @s smp_fireball_cd run scoreboard players set @s smp_fireball_cd 0
 execute if entity @s[scores={smp_fireball_cd=1..}] run scoreboard players remove @s smp_fireball_cd 1
+execute if entity @s[tag=fire_active,scores={smp_fireball_cd=0}] run title @s actionbar [{"text":"Fireball Ready","color":"green"}]
 execute if entity @s[tag=fire_active,scores={smp_sneak=1..}] if score @s smp_fireball_cd matches 0 at @s anchored eyes run summon minecraft:fireball ^ ^ ^1 {ExplosionPower:10}
 execute if entity @s[tag=fire_active,scores={smp_sneak=1..}] if score @s smp_fireball_cd matches 0 run scoreboard players set @s smp_fireball_cd 600
 
@@ -64,6 +66,7 @@ execute if entity @s[tag=speed_active] run effect give @s minecraft:speed 1 1
 execute if entity @s[tag=speed_active] run effect give @s minecraft:hunger 1 2 true
 execute if entity @s[tag=speed_active] unless score @s smp_speed_cd = @s smp_speed_cd run scoreboard players set @s smp_speed_cd 0
 execute if entity @s[scores={smp_speed_cd=1..}] run scoreboard players remove @s smp_speed_cd 1
+execute if entity @s[tag=speed_active,scores={smp_speed_cd=0}] run title @s actionbar [{"text":"Blink Ready","color":"green"}]
 execute if entity @s[tag=speed_active,scores={smp_sneak=1..}] if score @s smp_speed_cd matches 0 at @s run tp @s ^ ^ ^20
 execute if entity @s[tag=speed_active,scores={smp_sneak=1..}] if score @s smp_speed_cd matches 0 run scoreboard players set @s smp_speed_cd 200
 
@@ -88,6 +91,7 @@ execute if entity @s[tag=health_active,scores={smp_sneak=1..}] if score @s smp_h
 execute if entity @s[tag=health_active,scores={smp_sneak=1..}] if score @s smp_health_cd matches 0 run scoreboard players set @s smp_health_cd 600
 # 4. Tick down the cooldown
 execute if entity @s[scores={smp_health_cd=1..}] run scoreboard players remove @s smp_health_cd 1
+execute if entity @s[tag=health_active,scores={smp_health_cd=0}] run title @s actionbar [{"text":"Heal Ready","color":"green"}]
 
 # --- Harming ---
 execute if entity @s[tag=harming_active] run attribute @s minecraft:armor modifier add harming -5 add_value
@@ -103,6 +107,7 @@ execute if entity @s[tag=poison_active,scores={smp_sneak=1..}] if score @s smp_p
 execute if entity @s[tag=poison_active,scores={smp_sneak=1..}] if score @s smp_poison_cd matches 0 at @s run particle entity_effect{color:[0.529,0.639,0.388,1.00]} ~ ~ ~ 15 1 15 0 10000 normal
 execute if entity @s[tag=poison_active,scores={smp_sneak=1..}] if score @s smp_poison_cd matches 0 run scoreboard players set @s smp_poison_cd 300
 execute if entity @s[scores={smp_poison_cd=1..}] run scoreboard players remove @s smp_poison_cd 1
+execute if entity @s[tag=poison_active,scores={smp_poison_cd=0}] run title @s actionbar [{"text":"Poison Ready","color":"green"}]
 
 # --- Regeneration ---
 execute if entity @s[tag=regen_active] run effect give @s minecraft:regeneration 1 0
@@ -121,13 +126,16 @@ execute if entity @s[tag=bad_omen_active] run attribute @s minecraft:max_health 
 execute if entity @s[tag=!bad_omen_active] run attribute @s minecraft:max_health modifier remove bad_omen
 execute if entity @s[tag=bad_omen_active] run effect give @s minecraft:trial_omen 1 0
 execute if entity @s[tag=bad_omen_active] unless score @s smp_bad_omen_cd = @s smp_bad_omen_cd run scoreboard players set @s smp_bad_omen_cd 0
-execute if entity @s[tag=bad_omen_active,scores={smp_sneak=1..}] if score @s smp_bad_omen_cd matches 0 at @s run playsound minecraft:block.trial_spawner.spawn_mob player @a ~ ~ ~ 1 1
-execute if entity @s[tag=bad_omen_active,scores={smp_sneak=1..}] if score @s smp_bad_omen_cd matches 0 at @s run summon tnt ~ ~15 ~ {NoGravity:1b,fuse:60,explosion_power:10,Motion:[0.0,-0.5,0.0],Tags:["heavycore"],block_state:{Name:"minecraft:air"}}
-execute if entity @s[tag=bad_omen_active,scores={smp_sneak=1..}] if score @s smp_bad_omen_cd matches 0 at @s run summon item_display ~ ~10 ~ {Tags:["heavycore"],item_display:"head",Motion:[0.0,-5.0,0.0],transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0f,0f],scale:[5f,5f,5f]},item:{id:"minecraft:heavy_core",count:1}}
+execute if entity @s[tag=bad_omen_active,tag=bad_omen_used] if score @s smp_bad_omen_cd matches 0 at @s run playsound minecraft:block.trial_spawner.spawn_mob player @a ~ ~ ~ 1 1
+execute if entity @s[tag=bad_omen_active,tag=bad_omen_used] if score @s smp_bad_omen_cd matches 0 at @s run summon tnt ~ ~15 ~ {NoGravity:1b,fuse:60,explosion_power:10,Motion:[0.0,-0.5,0.0],Tags:["heavycore"],block_state:{Name:"minecraft:air"}}
+execute if entity @s[tag=bad_omen_active,tag=bad_omen_used] if score @s smp_bad_omen_cd matches 0 at @s run summon item_display ~ ~10 ~ {Tags:["heavycore"],item_display:"head",Motion:[0.0,-5.0,0.0],transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0f,0f],scale:[5f,5f,5f]},item:{id:"minecraft:heavy_core",count:1}}
 tp @e[type=item_display,tag=heavycore] @e[type=tnt,tag=heavycore,limit=1]
 execute unless entity @e[type=tnt,tag=heavycore] run kill @e[type=item_display,tag=heavycore]
-execute if entity @s[tag=bad_omen_active,scores={smp_sneak=1..}] if score @s smp_bad_omen_cd matches 0 run scoreboard players set @s smp_bad_omen_cd 1200
+execute if entity @s[tag=bad_omen_active,tag=bad_omen_used] if score @s smp_bad_omen_cd matches 0 run scoreboard players set @s smp_bad_omen_cd 1200
+execute if entity @s[tag=bad_omen_active,tag=bad_omen_used] if score @s smp_bad_omen_cd matches 1.. at @s run playsound minecraft:block.crafter.craft player @s ~ ~ ~ 1 1
+tag @s remove bad_omen_used
 execute if entity @s[scores={smp_bad_omen_cd=1..}] run scoreboard players remove @s smp_bad_omen_cd 1
+execute if entity @s[tag=bad_omen_active,scores={smp_bad_omen_cd=0}] run title @s actionbar [{"text":"Meteor Ready","color":"green"}]
 
 # --- Haste ---
 execute if entity @s[tag=haste_active] run effect give @s minecraft:haste 1 1
@@ -137,11 +145,13 @@ execute if entity @s[tag=haste_active,scores={smp_sneak=1..}] if score @s smp_ha
 execute if entity @s[tag=haste_active,scores={smp_sneak=1..}] if score @s smp_haste_cd matches 0 at @s run fill ~-8 ~-16 ~-8 ~7 ~-16 ~7 minecraft:pointed_dripstone
 execute if entity @s[tag=haste_active,scores={smp_sneak=1..}] if score @s smp_haste_cd matches 0 at @s run setblock ~ ~-1 ~ minecraft:obsidian
 execute if entity @s[tag=haste_active,scores={smp_sneak=1..}] if score @s smp_haste_cd matches 0 run scoreboard players set @s smp_haste_cd 6000
+execute if entity @s[tag=haste_active,scores={smp_haste_cd=0}] run title @s actionbar [{"text":"Chunk Miner Ready","color":"green"}]
 
 # --- Wither ---
 execute if entity @s[tag=wither_active] run effect give @s minecraft:wither 1 0
 execute if entity @s[tag=wither_active] unless score @s smp_wither_cd = @s smp_wither_cd run scoreboard players set @s smp_wither_cd 0
 execute if entity @s[scores={smp_wither_cd=1..}] run scoreboard players remove @s smp_wither_cd 1
+execute if entity @s[tag=wither_active,scores={smp_wither_cd=0}] run title @s actionbar [{"text":"Wither Skull Ready","color":"green"}]
 execute if entity @s[tag=wither_active,scores={smp_sneak=1..}] if score @s smp_wither_cd matches 0 at @s anchored eyes run summon minecraft:wither_skull ^ ^ ^1 {NoGravity:1b,Tags:["smp_wither_projectile"],dangerous:1b,acceleration_power:1d}
 execute if entity @s[tag=wither_active,scores={smp_sneak=1..}] if score @s smp_wither_cd matches 0 at @s anchored eyes rotated as @s positioned 0.0 0.0 0.0 positioned ^ ^ ^2 summon minecraft:area_effect_cloud run data modify entity @e[type=minecraft:wither_skull,tag=smp_wither_projectile,sort=nearest,limit=1] Motion set from entity @s Pos
 execute if entity @s[tag=wither_active,scores={smp_sneak=1..}] if score @s smp_wither_cd matches 0 run tag @e[type=minecraft:wither_skull,tag=smp_wither_projectile,sort=nearest,limit=1] remove smp_wither_projectile
@@ -151,6 +161,7 @@ execute if entity @s[tag=wither_active,scores={smp_sneak=1..}] if score @s smp_w
 execute if entity @s[tag=luck_active] run effect give @s minecraft:luck 1 0 
 execute if entity @s[tag=luck_active] unless score @s smp_luck_cd = @s smp_luck_cd run scoreboard players set @s smp_luck_cd 0
 execute if entity @s[scores={smp_luck_cd=1..}] run scoreboard players remove @s smp_luck_cd 1
+execute if entity @s[tag=luck_active,scores={smp_luck_cd=0}] run title @s actionbar [{"text":"Gamble Ready","color":"green"}]
 execute if entity @s[tag=luck_active,scores={smp_sneak=1..}] if score @s smp_luck_cd matches 0 run tag @s add luck_roll_active
 execute if entity @s[tag=luck_roll_active] run execute store result score @s smp_luck_roll run random roll 1..6
 execute if entity @s[tag=luck_active,scores={smp_sneak=1..}] if score @s smp_luck_cd matches 0 run scoreboard players set @s smp_luck_cd 600
@@ -175,6 +186,7 @@ execute if entity @s[tag=darkness_active] run effect give @s minecraft:darkness 
 execute if entity @s[tag=darkness_active] at @s run effect give @e[distance=..15,tag=!darkness_active] minecraft:glowing 2 0 true
 execute if entity @s[tag=darkness_active] unless score @s smp_darkness_cd = @s smp_darkness_cd run scoreboard players set @s smp_darkness_cd 0
 execute if entity @s[scores={smp_darkness_cd=1..}] run scoreboard players remove @s smp_darkness_cd 1
+execute if entity @s[tag=darkness_active,scores={smp_darkness_cd=0}] run title @s actionbar [{"text":"Sonic Boom Ready","color":"green"}]
 execute if entity @s[tag=darkness_active,scores={smp_sneak=1..}] if score @s smp_darkness_cd matches 0 at @s anchored eyes run summon minecraft:marker ^ ^ ^1 {Tags:["smp_sonic_boom"]}
 execute if entity @s[tag=darkness_active,scores={smp_sneak=1..}] if score @s smp_darkness_cd matches 0 run data modify entity @e[type=minecraft:marker,tag=smp_sonic_boom,sort=nearest,limit=1] Rotation set from entity @s Rotation
 execute if entity @s[tag=darkness_active,scores={smp_sneak=1..}] if score @s smp_darkness_cd matches 0 run playsound minecraft:entity.warden.sonic_boom player @a ~ ~ ~ 1 1
