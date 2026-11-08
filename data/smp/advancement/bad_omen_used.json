@@ -1,13 +1,13 @@
 {
   "criteria": {
     "use_bad_omen": {
-      "trigger": "minecraft:consume_item",
+      "trigger": "minecraft:using_item",
       "conditions": {
         "item": {
           "items": [
             "minecraft:mace"
           ],
-          "components": {
+          "predicates": {
             "minecraft:custom_data": {
               "smp_effect": "bad_omen"
             }
